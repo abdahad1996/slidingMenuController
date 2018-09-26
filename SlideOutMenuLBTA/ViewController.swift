@@ -19,6 +19,26 @@ class ViewController: UITableViewController {
     
     @objc func handleOpen() {
         print("Opening menu...")
+        
+        // how do we add a ViewController instead of just a plain UIView?
+        let vc = MenuController()
+//        vc.view.backgroundColor = .blue
+        
+        vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height)
+        
+        // how do i know of the existence of this code?
+        // StackOverflow, Blog Posts, Open Source Projects
+        
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(vc.view)
+        
+//        view.addSubview(vc.view)
+        
+        
+//        let blueView = UIView()
+//        blueView.backgroundColor = .blue
+//        blueView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+//        view.addSubview(blueView)
     }
     
     @objc func handleHide() {
