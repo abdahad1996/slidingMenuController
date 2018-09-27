@@ -18,7 +18,23 @@ class HomeController: UITableViewController {
         
         setupMenuController()
         
-        // Pan Gesture
+        setupPanGesture()
+        
+        setupDarkCoverView()
+    }
+    
+    let darkCoverView = UIView()
+    
+    fileprivate func setupDarkCoverView() {
+        darkCoverView.alpha = 0
+        darkCoverView.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        darkCoverView.isUserInteractionEnabled = false
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(darkCoverView)
+        darkCoverView.frame = mainWindow?.frame ?? .zero
+    }
+    
+    fileprivate func setupPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         view.addGestureRecognizer(panGesture)
     }
@@ -39,6 +55,11 @@ class HomeController: UITableViewController {
             let transform = CGAffineTransform(translationX: x, y: 0)
             menuController.view.transform = transform
             navigationController?.view.transform = transform
+            darkCoverView.transform = transform
+            
+            let alpha = x / menuWidth
+            print(x, alpha)
+            darkCoverView.alpha = alpha
             
         } else if gesture.state == .ended {
             handleEnded(gesture: gesture)
@@ -82,23 +103,34 @@ class HomeController: UITableViewController {
     fileprivate let menuWidth: CGFloat = 300
     fileprivate var isMenuOpened = false
     
-    fileprivate func performAnimations(tranform: CGAffineTransform) {
+    fileprivate func performAnimations(transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.menuController.view.transform = tranform
+            self.menuController.view.transform = transform
 //            self.view.transform = tranform
             // I'll let you think about this on your own
-            self.navigationController?.view.transform = tranform
+            self.navigationController?.view.transform = transform
+            self.darkCoverView.transform = transform
+            
+            // ternary operator
+            self.darkCoverView.alpha = transform == .identity ? 0 : 1
+            
+//            if transform == .identity {
+//                self.darkCoverView.alpha = 0
+//            } else {
+//                self.darkCoverView.alpha = 1
+//            }
+            
         })
     }
     
     @objc func handleOpen() {
         isMenuOpened = true
-        performAnimations(tranform: CGAffineTransform(translationX: self.menuWidth, y: 0))
+        performAnimations(transform: CGAffineTransform(translationX: self.menuWidth, y: 0))
     }
     
     @objc func handleHide() {
         isMenuOpened = false
-        performAnimations(tranform: .identity)
+        performAnimations(transform: .identity)
     }
     
     // MARK:- Fileprivate
