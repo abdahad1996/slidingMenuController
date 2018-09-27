@@ -25,11 +25,13 @@ class HomeController: UITableViewController {
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
-//        print(translation)
-        
         if gesture.state == .changed {
-            // let's drag out our menuController somehow
             var x = translation.x
+            
+            if isMenuOpened {
+                // make sure you go through this logic line by line
+                x += menuWidth
+            }
             
             x = min(menuWidth, x)
             x = max(0, x)
@@ -39,13 +41,46 @@ class HomeController: UITableViewController {
             navigationController?.view.transform = transform
             
         } else if gesture.state == .ended {
-            handleOpen()
+            handleEnded(gesture: gesture)
+        }
+    }
+    
+    fileprivate func handleEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        
+        let velocity = gesture.velocity(in: view)
+        print("Velocity: ",velocity.x)
+        
+        if isMenuOpened {
+            if abs(velocity.x) > velocityOpenThreshold {
+                handleHide()
+                return
+            }
+            
+            if abs(translation.x) < menuWidth / 2 {
+                handleOpen()
+            } else {
+                handleHide()
+            }
+        } else {
+            if velocity.x > velocityOpenThreshold {
+                handleOpen()
+                return
+            }
+            
+            if translation.x < menuWidth / 2 {
+                handleHide()
+            } else {
+                handleOpen()
+            }
         }
     }
     
     let menuController = MenuController()
     
+    fileprivate let velocityOpenThreshold: CGFloat = 500
     fileprivate let menuWidth: CGFloat = 300
+    fileprivate var isMenuOpened = false
     
     fileprivate func performAnimations(tranform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
@@ -57,10 +92,12 @@ class HomeController: UITableViewController {
     }
     
     @objc func handleOpen() {
+        isMenuOpened = true
         performAnimations(tranform: CGAffineTransform(translationX: self.menuWidth, y: 0))
     }
     
     @objc func handleHide() {
+        isMenuOpened = false
         performAnimations(tranform: .identity)
     }
     
