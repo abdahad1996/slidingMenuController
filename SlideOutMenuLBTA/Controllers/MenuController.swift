@@ -13,7 +13,18 @@ class MenuController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = .blue
+        
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+//        self.view.addGestureRecognizer(panGesture)
     }
+    
+//    @objc func handlePan(gesture: UIPanGestureRecognizer) {
+//        let translation = gesture.translation(in: view)
+//        let x = translation.x + 300
+//        view.transform = CGAffineTransform(translationX: x, y: 0)
+//        // try to fetch the Red Home Controller through the main keywindow somehow
+//        // if you try to do this, your code will be a little crazy and very very unmaintainable
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
