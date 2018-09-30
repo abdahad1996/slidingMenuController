@@ -13,6 +13,7 @@
 		C7829B29215AB1CC00BDCD48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7829B28215AB1CC00BDCD48 /* Assets.xcassets */; };
 		C7829B2C215AB1CC00BDCD48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7829B2A215AB1CC00BDCD48 /* LaunchScreen.storyboard */; };
 		C7829B38215B05C100BDCD48 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7829B37215B05C100BDCD48 /* MenuController.swift */; };
+		C7C11EFD2161794600E553D0 /* BaseSlidingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C11EFC2161794600E553D0 /* BaseSlidingController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C7829B2B215AB1CC00BDCD48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7829B2D215AB1CC00BDCD48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7829B37215B05C100BDCD48 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		C7C11EFC2161794600E553D0 /* BaseSlidingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSlidingController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +71,19 @@
 		C7829B36215B05AB00BDCD48 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C7C11EFB2161792B00E553D0 /* Base */,
 				C7829B37215B05C100BDCD48 /* MenuController.swift */,
 				C7829B23215AB1CC00BDCD48 /* HomeController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C7C11EFB2161792B00E553D0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C7C11EFC2161794600E553D0 /* BaseSlidingController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +160,7 @@
 				C7829B24215AB1CC00BDCD48 /* HomeController.swift in Sources */,
 				C7829B38215B05C100BDCD48 /* MenuController.swift in Sources */,
 				C7829B22215AB1CC00BDCD48 /* AppDelegate.swift in Sources */,
+				C7C11EFD2161794600E553D0 /* BaseSlidingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
