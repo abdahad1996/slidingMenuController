@@ -18,7 +18,8 @@ class HomeController: UITableViewController, UIGestureRecognizerDelegate {
         
         setupMenuController()
         
-        setupPanGesture()
+        // make sure to comment this line out
+//        setupPanGesture()
         
         setupDarkCoverView()
     }
