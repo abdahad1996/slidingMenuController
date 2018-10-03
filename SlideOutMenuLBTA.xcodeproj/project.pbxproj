@@ -16,6 +16,7 @@
 		C7C11EFD2161794600E553D0 /* BaseSlidingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C11EFC2161794600E553D0 /* BaseSlidingController.swift */; };
 		C7D46F9D216405A4007EFFAF /* CustomMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D46F9C216405A4007EFFAF /* CustomMenuHeaderView.swift */; };
 		C7D46F9F21640B5F007EFFAF /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D46F9E21640B5F007EFFAF /* SpacerView.swift */; };
+		C7D46FA721644D95007EFFAF /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D46FA621644D95007EFFAF /* ProfileImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C7C11EFC2161794600E553D0 /* BaseSlidingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSlidingController.swift; sourceTree = "<group>"; };
 		C7D46F9C216405A4007EFFAF /* CustomMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuHeaderView.swift; sourceTree = "<group>"; };
 		C7D46F9E21640B5F007EFFAF /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerView.swift; sourceTree = "<group>"; };
+		C7D46FA621644D95007EFFAF /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				C7D46F9C216405A4007EFFAF /* CustomMenuHeaderView.swift */,
 				C7D46F9E21640B5F007EFFAF /* SpacerView.swift */,
+				C7D46FA621644D95007EFFAF /* ProfileImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7829B24215AB1CC00BDCD48 /* HomeController.swift in Sources */,
+				C7D46FA721644D95007EFFAF /* ProfileImageView.swift in Sources */,
 				C7829B38215B05C100BDCD48 /* MenuController.swift in Sources */,
 				C7D46F9F21640B5F007EFFAF /* SpacerView.swift in Sources */,
 				C7829B22215AB1CC00BDCD48 /* AppDelegate.swift in Sources */,
