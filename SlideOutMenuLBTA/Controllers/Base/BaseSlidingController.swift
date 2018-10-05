@@ -70,7 +70,7 @@ class BaseSlidingController: UIViewController {
         
         // Cleaning up this section of code to solve for Lesson #10 Challenge of velocity and darkCoverView
         if isMenuOpened {
-            if abs(velocity.x) > velocityThreshold {
+            if velocity.x < -velocityThreshold {
                 closeMenu()
                 return
             }
@@ -80,7 +80,7 @@ class BaseSlidingController: UIViewController {
                 closeMenu()
             }
         } else {
-            if abs(velocity.x) > velocityThreshold {
+            if velocity.x > velocityThreshold {
                 openMenu()
                 return
             }
