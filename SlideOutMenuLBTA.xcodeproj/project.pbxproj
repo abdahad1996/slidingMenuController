@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C70BD2D82166C763006415A7 /* ListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70BD2D72166C763006415A7 /* ListsController.swift */; };
+		C70BD2DE2167E8EA006415A7 /* BookmarksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70BD2DD2167E8EA006415A7 /* BookmarksController.swift */; };
 		C7829B22215AB1CC00BDCD48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7829B21215AB1CC00BDCD48 /* AppDelegate.swift */; };
 		C7829B24215AB1CC00BDCD48 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7829B23215AB1CC00BDCD48 /* HomeController.swift */; };
 		C7829B27215AB1CC00BDCD48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7829B25215AB1CC00BDCD48 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		C70BD2D72166C763006415A7 /* ListsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsController.swift; sourceTree = "<group>"; };
+		C70BD2DD2167E8EA006415A7 /* BookmarksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksController.swift; sourceTree = "<group>"; };
 		C7829B1E215AB1CC00BDCD48 /* SlideOutMenuLBTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideOutMenuLBTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7829B21215AB1CC00BDCD48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7829B23215AB1CC00BDCD48 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				C7829B37215B05C100BDCD48 /* MenuController.swift */,
 				C7829B23215AB1CC00BDCD48 /* HomeController.swift */,
 				C70BD2D72166C763006415A7 /* ListsController.swift */,
+				C70BD2DD2167E8EA006415A7 /* BookmarksController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				C7D46F9D216405A4007EFFAF /* CustomMenuHeaderView.swift in Sources */,
 				C70BD2D82166C763006415A7 /* ListsController.swift in Sources */,
 				C7C11EFD2161794600E553D0 /* BaseSlidingController.swift in Sources */,
+				C70BD2DE2167E8EA006415A7 /* BookmarksController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

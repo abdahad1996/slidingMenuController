@@ -8,24 +8,28 @@
 
 import UIKit
 
+class RightContainerView: UIView {}
+class MenuContainerView: UIView {}
+class DarkCoverView: UIView {}
+
 class BaseSlidingController: UIViewController {
     
-    let redView: UIView = {
-        let v = UIView()
+    let redView: RightContainerView = {
+        let v = RightContainerView()
         v.backgroundColor = .red
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
     
-    let blueView: UIView = {
-        let v = UIView()
+    let blueView: MenuContainerView = {
+        let v = MenuContainerView()
         v.backgroundColor = .blue
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
     
-    let darkCoverView: UIView = {
-        let v = UIView()
+    let darkCoverView: DarkCoverView = {
+        let v = DarkCoverView()
         v.backgroundColor = UIColor(white: 0, alpha: 0.7)
         v.alpha = 0
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -102,27 +106,34 @@ class BaseSlidingController: UIViewController {
     }
     
     func didSelectMenuItem(indexPath: IndexPath) {
-//        print("Selected menu item:", indexPath.row)
+        performRightViewCleanUp()
         
         switch indexPath.row {
         case 0:
             print("Show Home Screen")
         case 1:
-//            print("Show Lists Screen")
             let listsController = ListsController()
             redView.addSubview(listsController.view)
-            
+            addChild(listsController)
+            rightViewController = listsController
         case 2:
-//            print("Show Bookmarks Screen")
-            let bookmarksController = UIViewController()
-            bookmarksController.view.backgroundColor = .purple
+            let bookmarksController = BookmarksController()
             redView.addSubview(bookmarksController.view)
+            addChild(bookmarksController)
+            rightViewController = bookmarksController
         default:
             print("Show Moments Screen")
         }
         
         redView.bringSubviewToFront(darkCoverView)
         closeMenu()
+    }
+    
+    var rightViewController: UIViewController?
+    
+    fileprivate func performRightViewCleanUp() {
+        rightViewController?.view.removeFromSuperview()
+        rightViewController?.removeFromParent()
     }
     
     fileprivate func performAnimations() {
@@ -162,10 +173,13 @@ class BaseSlidingController: UIViewController {
     
     fileprivate func setupViewControllers() {
         // let's add back our HomeController into the redView
-        let homeController = HomeController()
+//        let homeController = HomeController()
+        
+        rightViewController = HomeController()
+        
         let menuController = MenuController()
         
-        let homeView = homeController.view!
+        let homeView = rightViewController!.view!
         let menuView = menuController.view!
         
         homeView.translatesAutoresizingMaskIntoConstraints = false
@@ -193,7 +207,7 @@ class BaseSlidingController: UIViewController {
             darkCoverView.trailingAnchor.constraint(equalTo: redView.trailingAnchor),
             ])
         
-        addChild(homeController)
+        addChild(rightViewController!)
         addChild(menuController)
     }
 
