@@ -8,6 +8,38 @@
 
 import UIKit
 
+extension ChatroomsMenuController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.isEmpty {
+            filteredResults = chatroomGroups
+            tableView.reloadData()
+            return
+        }
+        
+        print(searchText)
+        // let's filter based on searchText
+        
+//        var results = [[String]]()
+//
+//        chatroomGroups.forEach { (group) in
+//            let filteredGroup = group.filter({ (chatroomName) -> Bool in
+//                return chatroomName.lowercased().contains(searchText.lowercased())
+//            })
+//            results.append(filteredGroup)
+//        }
+        
+        filteredResults = chatroomGroups.map({ (group) -> [String] in
+            return group.filter { $0.lowercased().contains(searchText.lowercased())}
+        })
+        
+//        print(results)
+        
+//        filteredResults = results
+        tableView.reloadData()
+    }
+}
+
 class ChatroomsMenuController: UITableViewController {
     
     let chatroomGroups = [
@@ -15,9 +47,15 @@ class ChatroomsMenuController: UITableViewController {
         ["jobs"],
         ["Brian Voong", "Steve Jobs", "Tim Cook", "Barack Obama"]
     ]
+    
+    var filteredResults = [[String]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // this is making a copy, and not a direct reference
+        filteredResults = chatroomGroups
+        
         tableView.separatorStyle = .none
         
         tableView.backgroundColor = #colorLiteral(red: 0.2980392157, green: 0.2078431373, blue: 0.2862745098, alpha: 1)
@@ -49,18 +87,18 @@ class ChatroomsMenuController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return chatroomGroups.count
+        return filteredResults.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatroomGroups[section].count
+        return filteredResults[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ChatroomMenuCell(style: .default, reuseIdentifier: nil)
         
         // so what is the text to fill out?
-        let text = chatroomGroups[indexPath.section][indexPath.row]
+        let text = filteredResults[indexPath.section][indexPath.row]
         cell.textLabel?.text = text
         cell.backgroundColor = .clear
         cell.textLabel?.textColor = .white
