@@ -6,6 +6,25 @@
 //  Copyright © 2018 Brian Voong. All rights reserved.
 //
 
+//BASESLIDING CONTROLLERS VIEW has 3 subviews
+    // 1-RIGHTCONTAINERVIEW(REDVIEW) // WE ADDED CONSTRAINTS TO IT SO WHEN IT CHANGES IT SIZE THE CONSTRAINTS CHANGES ACCORDING TO IT HENCE ALL ITS CHILDREN MOVE ALONG WITH IT
+
+        // - RIGHTCONTAINERVIEW
+                            //HAS A SUBVIEW OF RIGHTVIEWCONTROLLER(HOMECONTROLLER BY DEFAULT) WHICH IS ITS CHILD
+                            // WHEN ADDING A NEW CHILD SUCH AS LISTCONTROLLER AND ITS VIEW WE MUST FIRST REMOVE HOMECONTROLLERS VIEW FROM CONTAINER VIEW AND DEN REMOVE THE HOMECONTROLLER CHILD FROM PARENT RIGHTCONTAINERVIEW
+
+
+
+        // - DARKCOVERVIEW  //ITS HIDDEN BY DEFAULT BU USING ALPHA = 0 AND ITS ON TOP OF RIGHTCONTAINERVIEW
+                            // WEHN MENU CONTROLLER IS OPENED ITS APPHA CHANGES  TO 0.7 SO IT BECOMES VISIBLE
+                            // WEHN MENU CONTROLLER IS CLOSED ITS APPHA CHANGES TO 0 SO IT BECOMES INVISBILE
+
+    // 2-MENUCONTAINERVIEW(BLUEVIEW) ITS VIEW IS 300 WIDTH WHEN MENUOPENED AND 0 WIDTH WHEN MENU CLOSED
+//         // - MENUCONTAINERVIEW HAS A SUBVIEW OF MENuVIEWCONTROLLER which selects RIGHTVIEWCONTROLLER BY
+                // ITS INDEX
+//
+
+
 import UIKit
 
 class RightContainerView: UIView {}
@@ -13,20 +32,22 @@ class MenuContainerView: UIView {}
 class DarkCoverView: UIView {}
 
 class BaseSlidingController: UIViewController {
-    
+    //red view is homeview
     let redView: RightContainerView = {
         let v = RightContainerView()
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
-    
+    //blue view is menu view
     let blueView: MenuContainerView = {
         let v = MenuContainerView()
         v.backgroundColor = .blue
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
-    
+    //ITS HIDDEN BY DEFAULT BU USING ALPHA = 0
+    // WEHN MENU CONTROLLER IS OPENED ITS APPHA CHANGES  TO 0.7 SO IT BECOMES VISIBLE
+    // WEHN MENU CONTROLLER IS CLOSED ITS APPHA CHANGES TO 0 SO IT BECOMES INVISBILE
     let darkCoverView: DarkCoverView = {
         let v = DarkCoverView()
         v.backgroundColor = UIColor(white: 0, alpha: 0.7)
@@ -37,7 +58,7 @@ class BaseSlidingController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // base controller contains one left view called blue view which shows menu and one right view called red view and covers the basecontroller view
         view.backgroundColor = .white
         
         setupViews()
@@ -51,9 +72,11 @@ class BaseSlidingController: UIViewController {
     }
     
     @objc fileprivate func handleTapDismiss() {
+        
         closeMenu()
     }
     
+    //FOR PANGESTURE SLIDING
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         var x = translation.x
@@ -120,6 +143,7 @@ class BaseSlidingController: UIViewController {
         return isMenuOpened ? .lightContent : .default
     }
     
+    // THIS CHANGES FROM MENUCONTROLLER SO WE
     func didSelectMenuItem(indexPath: IndexPath) {
         performRightViewCleanUp()
         closeMenu()
@@ -148,10 +172,11 @@ class BaseSlidingController: UIViewController {
         
         redView.bringSubviewToFront(darkCoverView)
     }
-    
+    // redviewcontrollers view is the container for all the children whose root controller is homecontroller
     var rightViewController: UIViewController = UINavigationController(rootViewController: HomeController())
     let menuController = ChatroomMenuContainerController()
-    
+//    let menuController = MenuController()
+
     fileprivate func performRightViewCleanUp() {
         rightViewController.view.removeFromSuperview()
         rightViewController.removeFromParent()
@@ -171,11 +196,16 @@ class BaseSlidingController: UIViewController {
     fileprivate let velocityThreshold: CGFloat = 500
     fileprivate var isMenuOpened = false
     
+    //added 2 subviews
     fileprivate func setupViews() {
+        
         view.addSubview(redView)
         view.addSubview(blueView)
         
         // let's go ahead and use Auto Layout
+        
+        // redview is right view which is the containerview for all the child views
+        // bluw is left view
         NSLayoutConstraint.activate([
             redView.topAnchor.constraint(equalTo: view.topAnchor),
             redView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

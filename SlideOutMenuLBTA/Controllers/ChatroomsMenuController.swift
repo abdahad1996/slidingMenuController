@@ -56,26 +56,27 @@ class ChatroomsMenuController: UITableViewController {
         // this is making a copy, and not a direct reference
         filteredResults = chatroomGroups
         
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         
         tableView.backgroundColor = #colorLiteral(red: 0.2980392157, green: 0.2078431373, blue: 0.2862745098, alpha: 1)
+        tableView.tableFooterView = UIView()
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "UNREADS" : section == 1 ? "CHANNELS" : "DIRECT MESSAGES"
     }
     
-    fileprivate class ChatroomHeaderLabel: UILabel {
-        override func drawText(in rect: CGRect) {
-            super.drawText(in: rect.insetBy(dx: 16, dy: 0))
-        }
-    }
-    
+//    fileprivate class ChatroomHeaderLabel: UILabel {
+//        override func drawText(in rect: CGRect) {
+//            super.drawText(in: rect.insetBy(dx: 16, dy: 0))
+//        }
+//    }
+    // if section 0 title is undread
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let text = section == 0 ? "UNREADS" : section == 1 ? "CHANNELS" : "DIRECT MESSAGES"
         
-        let label = ChatroomHeaderLabel()
+        let label = UILabel()
         label.text = text
         label.textColor = #colorLiteral(red: 0.4745098039, green: 0.4078431373, blue: 0.4666666667, alpha: 1)
         label.backgroundColor = #colorLiteral(red: 0.2980392157, green: 0.2078431373, blue: 0.2862745098, alpha: 1)

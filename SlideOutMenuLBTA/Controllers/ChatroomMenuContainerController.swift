@@ -8,6 +8,7 @@
 
 import UIKit
 
+//contains serachview on top and chatroommenucontroller in bottom 
 class ChatroomMenuContainerController: UIViewController {
     
     let chatroomsMenuController = ChatroomsMenuController()
@@ -54,8 +55,8 @@ class SearchContainerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = .white
+        // for chaning color of searchbar texitfield placeholder
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = .red
         
         addSubview(searchBar)
         addSubview(rocketImageView)

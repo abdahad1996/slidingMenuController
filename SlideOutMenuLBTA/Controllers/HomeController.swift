@@ -79,6 +79,9 @@ class HomeController: UITableViewController, UIGestureRecognizerDelegate {
         return cell
         
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(ListsController(), animated: true )
+    }
 
 }
 

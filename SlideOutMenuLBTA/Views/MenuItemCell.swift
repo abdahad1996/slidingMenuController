@@ -43,6 +43,7 @@ class MenuItemCell: UITableViewCell {
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
+        // true will make the down code work and we can add padding to it 
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = .init(top: 8, left: 12, bottom: 8, right: 12)
     }
